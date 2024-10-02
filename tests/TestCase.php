@@ -12,10 +12,9 @@ abstract class TestCase extends BaseTestCase
     //execute DatabaseSeeder class before each test that uses the RefreshDatabase trait
     protected $seed = true;
 
-    protected function createRandomUser($email = null, RolesEnum $role = RolesEnum::ADMIN)
+    protected function createRandomUser($email = null)
     {
-        $user = User::factory()->has(Profile::factory())
-            ->state(['role_id' => $role->value])
+        $user = User::factory()
             ->state(function () use ($email) {
                 return $email !== null ? ['email' => $email] : [];
             })

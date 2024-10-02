@@ -16,15 +16,14 @@ class UserSeeder extends Seeder
     {
         $users = config('seeds.users');
         foreach ($users as $user) {
-            $created_user = User::create([
+            User::create([
+                'first_name' => $user['first_name'],
+                'last_name' => $user['last_name'],
+                'dob' => $user['dob'],
+                'gender' => $user['gender'],
                 'email' => $user['email'],
                 'email_verified_at' => now(),
-                'password' => $user['password'],
-                'role_id' => $user['role_id'],
-            ]);
-            $created_user->profile()->create([
-                'first_name' => $user['profile']['first_name'],
-                'last_name' => $user['profile']['last_name'],
+                'password' => $user['password']
             ]);
         }
     }

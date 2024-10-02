@@ -25,6 +25,10 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
+            'dob' => fake()->dateTimeBetween('-50 years', '-15 years'),
+            'gender' => fake()->boolean(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('Password123'),
@@ -40,15 +44,5 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
-    }
-
-    public function admin()
-    {
-        return $this->state(['role_id' => RolesEnum::ADMIN]);
-    }
-
-    public function viewer()
-    {
-        return $this->state(['role_id' => RolesEnum::VIEWER]);
     }
 }

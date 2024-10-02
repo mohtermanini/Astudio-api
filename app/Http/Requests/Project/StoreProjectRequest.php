@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Project;
 
+use App\Rules\NoDigitsRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 
-class StoreAuthRequest extends FormRequest
+class StoreProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,10 @@ class StoreAuthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email'],
-            'password' => ['required', Password::defaults()]
+            'name' => ['required', 'string', 'max:255', 'unique:projects,name', new NoDigitsRule],
+            'startDate' => ['required', 'date', 'before_or_equal:endDate'],
+            'endDate' => ['required', 'date', 'after_or_equal:startDate'],
+            'departmentId' => ['required', 'integer', 'exists:departments,id'],
         ];
     }
 }

@@ -1,17 +1,16 @@
 <?php
 
-use App\Enums\RolesEnum;
+use App\Enums\GendersEnum;
 
 return [
     'users' => [
         [
-            'email' => 'test@mail.com',
+            'first_name' => 'Mohamad',
+            'last_name' => 'Termanini',
+            'dob' => '1997-10-01',
+            'gender' => GendersEnum::Male,
+            'email' => 'mohtermanini.job@gmail.com',
             'password' => 'Password123',
-            'profile' => [
-                'first_name' => 'Jack',
-                'last_name' => 'Rose',
-            ],
-            'role_id' => RolesEnum::ADMIN
         ],
     ],
 ];

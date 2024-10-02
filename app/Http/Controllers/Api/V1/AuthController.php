@@ -22,7 +22,7 @@ class AuthController extends Controller
     {
         try {
             $user = $authService->getUserByCredentialsOrFail(
-                $storeAuthRequest->username,
+                $storeAuthRequest->email,
                 $storeAuthRequest->password
             );
 

@@ -5,7 +5,10 @@ namespace Database\Seeders;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Department;
 use App\Models\Profile;
+use App\Models\Project;
+use App\Models\Timesheet;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,42 +21,48 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //Call Seeders
         $this->call([
-            RoleSeeder::class,
+            ProjectStatusSeeder::class,
             UserSeeder::class,
         ]);
 
         if (app()->environment(['local', 'staging'])) {
-            //HasOne Relationship
-            User::factory()->admin()->has(Profile::factory())->count(1)->create();
+            $user_1 = User::factory()->create();
+            $user_2 = User::factory()->create();
 
-            $author_1 = Author::factory()->create();
-            $author_2 = Author::factory()->create();
-
-            //HasMany Relationship
-            $category_1 = Category::factory()->has(Book::factory()->count(3))->create();
-            $category_2 = Category::factory()->has(Book::factory()->count(2))->create();
-
-            $author_1->books()->attach($category_1->books);
-            $author_1->books()->attach($category_2->books);
-            $author_2->books()->attach($category_2->books);
-
-            Book::factory()
-                //Implicitly create function that returns the given array
-                ->state(['title' => 'Test Book'])
-                //BelongsTo Relationship
-                ->for(Category::factory())
-                //BelongsToMany Relationship
-                ->has(Author::factory())
+            $department_1 = Department::factory()
+                ->has(Project::factory()->created()
+                    ->hasAttached([$user_1, $user_2]))
                 ->create();
 
-            Book::factory()
-                //BelongsTo Relationship with Model Instance
-                ->for($category_1)
-                //BelongsToMany Relationship with Setting Pivot Table Columns
-                ->hasAttached(Author::factory(), ['is_autographed' => true])
+            $department_2 = Department::factory()
+                ->has(Project::factory()->inProgress()
+                    ->hasAttached($user_1))
                 ->create();
+
+            $project_1 = $department_1->projects->first();
+            $project_2 = $department_2->projects->first();
+
+            Timesheet::factory()->count(3)
+                ->state(['date' => fake()->dateTimeBetween($project_1->start_date, $project_1->end_date),])
+                ->create([
+                    'user_id' => $user_1->id,
+                    'project_id' => $project_1->id,
+                ]);
+
+            Timesheet::factory()->count(2)
+                ->state(['date' => fake()->dateTimeBetween($project_2->start_date, $project_1->end_date),])
+                ->create([
+                    'user_id' => $user_1->id,
+                    'project_id' => $project_2->id,
+                ]);
+
+            Timesheet::factory()->count(1)
+                ->state(['date' => fake()->dateTimeBetween($project_1->start_date, $project_1->end_date),])
+                ->create([
+                    'user_id' => $user_2->id,
+                    'project_id' => $project_1->id,
+                ]);
         }
     }
 }

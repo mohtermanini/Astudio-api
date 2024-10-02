@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Timesheet;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 
-class StoreAuthRequest extends FormRequest
+class UpdateTimesheetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +22,11 @@ class StoreAuthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email'],
-            'password' => ['required', Password::defaults()]
+            'taskname' => ['required', 'string', 'max:1000'],
+            'date' => ['required', 'date'],
+            'hours' => ['required', 'numeric', 'min:0'],
+            'projectId' => ['required', 'integer', 'exists:projects,id'],
+            'userId' => ['required', 'integer', 'exists:users,id'],
         ];
     }
 }

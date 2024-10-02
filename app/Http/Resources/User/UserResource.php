@@ -2,8 +2,7 @@
 
 namespace App\Http\Resources\User;
 
-use App\Http\Resources\Profile\ProfileResource;
-use App\Http\Resources\Role\RoleResource;
+use App\Enums\GendersEnum;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,10 +17,12 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'firstName' => $this->first_name,
+            'lastName' => $this->last_name,
+            'fullName' => $this->full_name,
+            'dob' => $this->dob,
+            'gender' => $this->gender === GendersEnum::Male->value ? 'male' : 'female',
             'email' => $this->email,
-            //load relationship into the response if it exist in modelObject
-            'profile' => new ProfileResource($this->whenLoaded('profile')),
-            'role' => new RoleResource($this->whenLoaded('role'))
         ];
     }
 }
