@@ -9,12 +9,12 @@
 
     Import the [Astudio postman apis.json] file into Postman.
 
-4- Define Environment
+4- Define Postman Environment
 
     - Create a new environment and create new variable inside it called [baseUrlV1].
 	- Set [baseUrlV1] to [http://localhost:8000/api] (adjust the port to match your application).
 
-5- Select Environment
+5- Select Postman Environment
 
 	Change the Postman environment to the newly created environment.
 
