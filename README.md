@@ -1,13 +1,13 @@
 # Setup Instructions:
 1- Import the Database
     
-    Download [astudio-database.sql] file from the root of this repository or from [here](https://www.dropbox.com/scl/fi/zc6gbok0j32dw23xaphmr/atstudio-database.sql?rlkey=ja7m7sud6cbftgjvdb4s0q71k&st=m0b94mg8&dl=0) then execute it in your database.
+<small> Download [astudio-database.sql] file from the root of this repository or from [here](https://www.dropbox.com/scl/fi/zc6gbok0j32dw23xaphmr/atstudio-database.sql?rlkey=ja7m7sud6cbftgjvdb4s0q71k&st=m0b94mg8&dl=0) then execute it in your database.</small>
 
 2- Launch application using [php artisan serve]
 
 3- Import Postman Collection
 
-    Download the [Astudio postman apis.json] file from the root of this repository or from [here](https://www.dropbox.com/scl/fi/1ny9akdjzqzf1d800zhs4/Astudio-postman-apis.json?rlkey=uhhtf1r444v7uecuc1kmhz73j&st=9y9kodtb&dl=0) then imported it into Postman.
+<small>Download the [Astudio postman apis.json] file from the root of this repository or from [here](https://www.dropbox.com/scl/fi/1ny9akdjzqzf1d800zhs4/Astudio-postman-apis.json?rlkey=uhhtf1r444v7uecuc1kmhz73j&st=9y9kodtb&dl=0) then imported it into Postman.</small>
 
 4- Define Postman Environment
 
@@ -16,7 +16,7 @@
 
 5- Select Postman Environment
 
-	Change the Postman environment to the newly created environment.
+	- Change the Postman environment to the newly created environment.
 
 6- Access Protected APIs
 
