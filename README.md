@@ -11,18 +11,25 @@
 
 4- Define Postman Environment
 
-    - Create a new environment inside postman and create new variable inside it called [baseUrlV1].
-	- Set [baseUrlV1] to [http://localhost:8000/api] (adjust the port to match your application).
+<small>
+
+- Create a new environment inside postman and create new variable inside it called [baseUrlV1].
+- Set [baseUrlV1] to [http://localhost:8000/api] (adjust the port to match your application).
+</small>
 
 5- Select Postman Environment
-
-	- Change the Postman environment to the newly created environment.
+<small>
+- Change the Postman environment to the newly created environment.
+</small>
 
 6- Access Protected APIs
 
-	- Note that protected APIs require authentication. Call the Auth/login API first to automatically set the authentication token for subsequent requests.
-	- Login credentials:
+<small>
+
+- Note that protected APIs require authentication. Call the Auth/login API first to automatically set the authentication token for subsequent requests.
+- Login credentials:
 		Email: mohtermanini.job@gmail.com
 		Pass: Password123
+</small>
 
 <small>Note: you can always reset the database data using [php artisan migrate:fresh --seed]</small>
