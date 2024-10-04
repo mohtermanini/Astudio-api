@@ -3,7 +3,7 @@
     
 <small> Download [astudio-database.sql] file from the root of this repository or from [here](https://www.dropbox.com/scl/fi/zc6gbok0j32dw23xaphmr/atstudio-database.sql?rlkey=ja7m7sud6cbftgjvdb4s0q71k&st=m0b94mg8&dl=0) then execute it in your database.</small>
 
-2- Launch application using [php artisan serve]
+2- Install dependencies using [composer install] Launch application using [php artisan serve]
 
 3- Import Postman Collection
 
