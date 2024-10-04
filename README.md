@@ -1,17 +1,17 @@
 # Setup Instructions:
 1- Import the Database
     
-    Execute [atstudio.sql] file
+    Download [astudio-database.sql] file from the root of this repository or from [here](https://www.dropbox.com/scl/fi/zc6gbok0j32dw23xaphmr/atstudio-database.sql?rlkey=ja7m7sud6cbftgjvdb4s0q71k&st=m0b94mg8&dl=0) then execute it in your database.
 
 2- Launch application using [php artisan serve]
 
 3- Import Postman Collection
 
-    Import the [Astudio postman apis.json] file into Postman.
+    Download the [Astudio postman apis.json] file from the root of this repository or from [here](https://www.dropbox.com/scl/fi/1ny9akdjzqzf1d800zhs4/Astudio-postman-apis.json?rlkey=uhhtf1r444v7uecuc1kmhz73j&st=9y9kodtb&dl=0) then imported it into Postman.
 
 4- Define Postman Environment
 
-    - Create a new environment and create new variable inside it called [baseUrlV1].
+    - Create a new environment inside postman and create new variable inside it called [baseUrlV1].
 	- Set [baseUrlV1] to [http://localhost:8000/api] (adjust the port to match your application).
 
 5- Select Postman Environment
@@ -20,8 +20,8 @@
 
 6- Access Protected APIs
 
-	- Note that protected APIs require authentication. Call the Auth/login API first to set the authentication token for subsequent requests.
-	- Credentials:
+	- Note that protected APIs require authentication. Call the Auth/login API first to automatically set the authentication token for subsequent requests.
+	- Login credentials:
 		Email: mohtermanini.job@gmail.com
 		Pass: Password123
 

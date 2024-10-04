@@ -1,0 +1,989 @@
+{
+	"info": {
+		"_postman_id": "25cf45ea-b341-418c-a4bc-98325b44d520",
+		"name": "Api-Template",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38728118"
+	},
+	"item": [
+		{
+			"name": "V1",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json();\r",
+											"const token = response.data.token;\r",
+											"pm.collectionVariables.set(\"token\", token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "mohtermanini.job@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Password123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrlV1}}/auth",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlV1}}/auth",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Authenticated User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlV1}}/auth",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Project",
+					"item": [
+						{
+							"name": "Get All Projects",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlV1}}/projects",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"projects"
+									],
+									"query": [
+										{
+											"key": "statusIds[]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "statusIds[]",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "departmentIds[]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "startDate",
+											"value": "2024-09-06",
+											"description": "project start date >= startDate | note: endDate must exist",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2024-11-08",
+											"description": "project end date < endDate | note: startDate must exist",
+											"disabled": true
+										},
+										{
+											"key": "searchBy",
+											"value": "ci",
+											"description": "by project name",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Project",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlV1}}/projects/:id",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"projects",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Project",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "test_reqe",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "startDate",
+											"value": "2021-05-10",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2021-05-13",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "departmentId",
+											"value": "2",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrlV1}}/projects",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Project",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "test one hundred",
+											"type": "text"
+										},
+										{
+											"key": "startDate",
+											"value": "2021-05-10",
+											"type": "text"
+										},
+										{
+											"key": "endDate",
+											"value": "2021-05-10",
+											"type": "text"
+										},
+										{
+											"key": "departmentId",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "statusId",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrlV1}}/projects/:id",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"projects",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Project",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlV1}}/projects/:id",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"projects",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Timesheet",
+					"item": [
+						{
+							"name": "Get All Timesheet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlV1}}/timesheet",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"timesheet"
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2024-09-24",
+											"disabled": true
+										},
+										{
+											"key": "maxHours",
+											"value": "13.2",
+											"disabled": true
+										},
+										{
+											"key": "searchBy",
+											"value": "sit",
+											"description": "by taskname",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "10",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Timesheet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlV1}}/timesheet/:id",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"timesheet",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Timesheet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "taskname",
+											"value": "hellor world",
+											"type": "text"
+										},
+										{
+											"key": "date",
+											"value": "2024-09-27",
+											"type": "text"
+										},
+										{
+											"key": "userId",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "projectId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "hours",
+											"value": "2.54",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrlV1}}/timesheet",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"timesheet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Timesheet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "taskname",
+											"value": "hellor world",
+											"type": "text"
+										},
+										{
+											"key": "date",
+											"value": "2024-09-23",
+											"type": "text"
+										},
+										{
+											"key": "userId",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "projectId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "hours",
+											"value": "2.54",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrlV1}}/timesheet/:id",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"timesheet",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Timesheet",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlV1}}/timesheet/:id",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"timesheet",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Get All User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlV1}}/users",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"users"
+									],
+									"query": [
+										{
+											"key": "gender",
+											"value": "female",
+											"description": "male or female",
+											"disabled": true
+										},
+										{
+											"key": "dob",
+											"value": "1997-10-01",
+											"disabled": true
+										},
+										{
+											"key": "searchBy",
+											"value": "Mo",
+											"description": "by firstName or lastName or email",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlV1}}/users/:id",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "firstName",
+											"value": "Hello",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "World",
+											"type": "text"
+										},
+										{
+											"key": "dob",
+											"value": "2023-05-10",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "female",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "hello@mail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Google@123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrlV1}}/users",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "firstName",
+											"value": "Hellow",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "World",
+											"type": "text"
+										},
+										{
+											"key": "dob",
+											"value": "2023-05-10",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "male",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "hello@mail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Google@1234",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrlV1}}/users/:id",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrlV1}}/users/:id",
+									"host": [
+										"{{baseUrlV1}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
